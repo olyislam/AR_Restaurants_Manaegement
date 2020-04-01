@@ -66,7 +66,7 @@ public class UI_Management : MonoBehaviour
 
     }
 
-    public void GoOrderList()
+    public void Show_OrderList()
     {
         Set_CurrenPage(OrderList_Page);//Actice Order list Page
         //get all reference from ApplicationManager to show Order List

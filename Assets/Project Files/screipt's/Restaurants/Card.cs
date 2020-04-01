@@ -57,6 +57,7 @@ public class Card : MonoBehaviour
     public void Purcesses(ClientsOrder Client, Database_controller database)
     {
         database.Purcesses(Client);
+        Order_List = new List<Items>();
     }
 
 }
