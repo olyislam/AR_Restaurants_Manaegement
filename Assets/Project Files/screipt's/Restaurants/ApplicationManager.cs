@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ApplicationManager : ItemsManager
 {    //singleton from here
@@ -30,8 +28,9 @@ public class ApplicationManager : ItemsManager
     public Card card;
 
 
-    public int TableNo = 3;
-    public string CurrentID = "121";
+    public static int TableNo = 0;
+    public static
+    string CurrentID ;
     #endregion property
 
     public Database_controller DataBase

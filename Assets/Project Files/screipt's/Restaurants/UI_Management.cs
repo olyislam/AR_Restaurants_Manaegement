@@ -8,7 +8,9 @@ public class UI_Management : MonoBehaviour
 
     //ALL Activity Pages
     [SerializeField]
-    private GameObject Home_Page;
+    private GameObject Home_Page;   
+    [SerializeField]
+    private GameObject Scaning_Page;
     [SerializeField]
     private GameObject Description_Page;
     [SerializeField]
@@ -18,36 +20,90 @@ public class UI_Management : MonoBehaviour
     [Space]
     [SerializeField]
     private Text TotalPrice;
+    [SerializeField]
+    private InputField TableNoField;
+    [SerializeField]
+    private Button DetailsBtn;
 
-    
+
     [Space]
     [Header("Scrollbar Content Object")]
     [SerializeField]
     private UI_OrderedContents Ordered_Contents;
-
+    [SerializeField]
+    private VuforiaMonoBehaviour ar_Camera;
+    public bool Active_ArCam
+    {
+        set 
+        {
+           ar_Camera.enabled = value;
+        }
+    }
     #endregion Property
 
-
+    //Set initial home page
     public void Start()
     {
         Debug.Log("UI Handeller");
         Set_CurrenPage(Home_Page); //Active Home Page
+        DetailsBtn_isInteractable = false;
+        Active_ArCam = false;
     }
+
+    //Call from ui confirm button
     public void Purcesses()
     {
+        int TableNo = ApplicationManager.TableNo;//reference table no where ordered
+
         ApplicationManager APmanager = ApplicationManager.instance;
         Database_controller database = APmanager.DataBase;
-        int TableNo = APmanager.TableNo;
         Card card = APmanager.card;
 
         ClientsOrder Client = new ClientsOrder(TableNo, card.Get_OrderList);
         card.Purcesses(Client, database);
     }
 
-    #region Page_Transaction
-    public void Go_Home()
+
+    #region UI_&_Page_Transaction
+    //detail Button interactable active and deactive in here
+    //initial from "Get_Tracked_ID" class and this Start methode
+    public bool DetailsBtn_isInteractable
     {
-        Set_CurrenPage(Home_Page);
+        set
+        {
+            DetailsBtn.interactable = value;
+        }
+
+    }
+    //Call Form UI Button for start this Application
+    //and set active AR camera from here
+    public void StartScanning()
+    {
+        string tableno = TableNoField.text;
+        try
+        {
+            int TableNO = System.Int32.Parse(tableno);
+            ApplicationManager.TableNo = TableNO;
+            Active_ArCam = true;
+            Set_CurrenPage(Scaning_Page);
+
+        }
+        catch (System.FormatException e)
+        {
+            TableNoField.text = "";
+            Text message = TableNoField.placeholder.GetComponent<Text>();
+            message.text = "Enter Positive Integer";
+            message.color = Color.red;
+        }
+        
+    }
+
+
+    //go to home page and actice ar camera
+    public void Back()
+    {
+        Set_CurrenPage(Scaning_Page);
+        
         Ordered_Contents.CleanOrderPage();
         TotalPrice.text = "0" + " BDT";
     }
@@ -55,9 +111,9 @@ public class UI_Management : MonoBehaviour
     public void Show_Description()
     {
         Set_CurrenPage(Description_Page);//active discription page where will show description
+        string id = ApplicationManager.CurrentID;//Get Current Item Id for get the certain model
 
         ApplicationManager APmanager = ApplicationManager.instance;//Assign ApplicationManager reference 
-        string id = APmanager.CurrentID;//Get Current Item Id for get the certain model
         Items item = APmanager.Get_Item(id);
 
         //Assign reference where show item description 
@@ -70,9 +126,9 @@ public class UI_Management : MonoBehaviour
     {
         Set_CurrenPage(OrderList_Page);//Actice Order list Page
         //get all reference from ApplicationManager to show Order List
-        ApplicationManager APmanager = ApplicationManager.instance;
-        int TableNo = APmanager.TableNo;
-        Card card = APmanager.card;
+        int TableNo = ApplicationManager.TableNo;
+
+        Card card = ApplicationManager.instance.card;
 
         Ordered_Contents.ShowOrderList(card.Get_OrderList);//Pass Order List for Show on ui
 
@@ -93,5 +149,7 @@ public class UI_Management : MonoBehaviour
         New_Activity.SetActive(true);
         Activated_Page = New_Activity;
     }
-    #endregion Page_Transaction
+
+
+    #endregion UI_&_Page_Transaction
 }

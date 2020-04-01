@@ -19,12 +19,11 @@ public class Card : MonoBehaviour
     //call from UI Add Button and it will be Add to card List
     public void AddItem()
     {
-        ApplicationManager AP_manager = ApplicationManager.instance;
+        string itemID = ApplicationManager.CurrentID;//Get Selected Model ID
 
-        string itemID = AP_manager.CurrentID;//Get Selected Model ID
+        ApplicationManager AP_manager = ApplicationManager.instance;
         Items SelectedItem = AP_manager.Get_Item(itemID);
         AddToCard(SelectedItem);
-        Debug.Log("count " + Order_List.Count);
     }
 
     protected void AddToCard(Items NewItem)
@@ -49,7 +48,6 @@ public class Card : MonoBehaviour
             Order_List[exestingIndx].Add(NewItem);
         else
             Order_List.Add(NewItem);
-          
     }
 
 
