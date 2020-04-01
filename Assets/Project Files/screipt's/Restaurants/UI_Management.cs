@@ -103,13 +103,14 @@ public class UI_Management : MonoBehaviour
     public void Back()
     {
         Set_CurrenPage(Scaning_Page);
-        
+        Active_ArCam = true;
         Ordered_Contents.CleanOrderPage();
         TotalPrice.text = "0" + " BDT";
     }
 
     public void Show_Description()
     {
+        Active_ArCam = false;
         Set_CurrenPage(Description_Page);//active discription page where will show description
         string id = ApplicationManager.CurrentID;//Get Current Item Id for get the certain model
 
@@ -124,6 +125,7 @@ public class UI_Management : MonoBehaviour
 
     public void Show_OrderList()
     {
+        Active_ArCam = false;
         Set_CurrenPage(OrderList_Page);//Actice Order list Page
         //get all reference from ApplicationManager to show Order List
         int TableNo = ApplicationManager.TableNo;
