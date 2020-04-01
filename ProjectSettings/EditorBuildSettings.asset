@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Project Files/Scenes/Auth GUI.unity
-    guid: fd4e413e0180d794d95b24b3d3577dae
-  - enabled: 1
-    path: Assets/Project Files/Scenes/Google sogn in.unity
-    guid: 5e4959434d87aae4493f8fd0a7e302e9
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
