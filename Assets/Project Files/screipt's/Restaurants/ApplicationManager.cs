@@ -23,21 +23,20 @@ public class ApplicationManager : ItemsManager
     [Header ("ApplicationManager Reference & property")]
 
     [SerializeField]
-    private Database_controller dataBase;
+    private Client_DB_Access Client_DB;
     public UI_Management ui;
     public Card card;
 
 
     public static int TableNo = 0;
-    public static
-    string CurrentID ;
+    public static string CurrentID ;
     #endregion property
 
-    public Database_controller DataBase
+    public Client_DB_Access Client_DataBase
     {
         get
         {
-            return dataBase;
+            return Client_DB;
         }
     }
 

@@ -56,11 +56,11 @@ public class UI_Management : MonoBehaviour
         int TableNo = ApplicationManager.TableNo;//reference table no where ordered
 
         ApplicationManager APmanager = ApplicationManager.instance;
-        Database_controller database = APmanager.DataBase;
+        Client_DB_Access Client_DB = APmanager.Client_DataBase;
         Card card = APmanager.card;
 
         ClientsOrder Client = new ClientsOrder(TableNo, card.Get_OrderList);
-        card.Purcesses(Client, database);
+        card.Purcesses(Client, Client_DB);
     }
 
 

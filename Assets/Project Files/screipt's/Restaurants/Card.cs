@@ -52,9 +52,9 @@ public class Card : MonoBehaviour
 
 
     //call from UI Add Button and it will pass this order data into the database
-    public void Purcesses(ClientsOrder Client, Database_controller database)
+    public void Purcesses(ClientsOrder Client, Client_DB_Access Client_DB)
     {
-        database.Purcesses(Client);
+        Client_DB.Purcesses(Client);
         Order_List = new List<Items>();
     }
 

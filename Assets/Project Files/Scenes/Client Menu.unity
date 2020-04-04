@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4514215, g: 0.5008377, b: 0.5719068, a: 1}
+  m_IndirectSpecularColor: {r: 0.45142072, g: 0.5008409, b: 0.57192266, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -610,7 +610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &342656323
 GameObject:
@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 357254822}
   - component: {fileID: 357254821}
   m_Layer: 0
-  m_Name: Data Base Management
+  m_Name: Client Data Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 357254820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf5b8f1041c49046b131108e5167056, type: 3}
+  m_Script: {fileID: 11500000, guid: 675879814298a974c9959e2f6bd98ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &357254822
@@ -2152,7 +2152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &1357288750
 Material:
@@ -2598,7 +2598,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 29.43, y: 0, z: 0}
 --- !u!1 &1461851654
 GameObject:
@@ -2928,7 +2928,7 @@ MonoBehaviour:
   Items_Image:
   - {fileID: 2800000, guid: 8c2c2db3599457a489e336b6fdf85d0c, type: 3}
   - {fileID: 2800000, guid: 49ff2dd8d2f3100458337c07aeaae03b, type: 3}
-  dataBase: {fileID: 357254821}
+  Client_DB: {fileID: 357254821}
   ui: {fileID: 1573442435}
   card: {fileID: 375256738}
 --- !u!4 &1594788220
