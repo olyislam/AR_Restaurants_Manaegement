@@ -2,43 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.IO;
+
+
 public class Admin_DB_Access : Client_DB_Access
 {
-    
-    public void Get_Order(int table_no)
-    {
-        string Table_Information = "Table NO: " + table_no;
 
-         Panding_Path//.Child(Table_Information)
-        .GetValueAsync().ContinueWith(task => {
-             if (task.IsFaulted)
-             {
-                Debug.Log("Error " );
-                      // Handle the error...
-             }
-             else if (task.IsCompleted)
-             {
+    public void Get_PendingData()
+    {
+        Get_Orders();
+        Cancel_PendingOrder(7);
+    }
+
+    public void Get_Orders()
+    {
+
+        Pending_Path.GetValueAsync()
+       .ContinueWith(task =>
+       {
+           if (task.IsFaulted)
+           {
+                // Handle the error...
+                Debug.Log("Error ");
+           }
+           else if (task.IsCompleted)
+           {
                 // Do something with snapshot...
                 DataSnapshot snapshot = task.Result;
-                Debug.Log("completed " + snapshot);
+                Debug.Log("completed with Total Datas " + snapshot.ChildrenCount);
 
-                Debug.Log("Total dATA " + snapshot.ChildrenCount);
-
-                DataSnapshot t1 = snapshot.Child(Table_Information);
-                string T1Json = t1.GetRawJsonValue();
-                ClientsOrder t1order = JsonUtility.FromJson<ClientsOrder>(T1Json);
-                Debug.Log("retroved Data IDs: " + t1order.IDs.Count + " TotalProice = " + t1order.Total_Price);
+                   
 
 
-                table_no = 3;
-                Table_Information = "Table NO: " + table_no;
-                DataSnapshot t2 = snapshot.Child(Table_Information);
-                string T2Json = t2.GetRawJsonValue();
-                ClientsOrder t2order = JsonUtility.FromJson<ClientsOrder>(T2Json);
-                Debug.Log("retroved Data IDs: " + t2order.IDs.Count + " TotalProice = " + t2order.Total_Price);
+                 IEnumerable<DataSnapshot> RawDatas = snapshot.Children;
+                 List<DataSnapshot> SnapsDatas = RawDatas.ToList();
+                 Debug.Log("We Get " + SnapsDatas.Count);
 
-            }
-        });
+
+
+                 //this list hold all pending order list and it will be return from this methode
+                 List<ClientsOrder> pendingOrders = new List<ClientsOrder>();
+                 foreach (DataSnapshot snap in SnapsDatas)
+                 {
+                     string Json = snap.GetRawJsonValue();
+                     ClientsOrder order = JsonUtility.FromJson<ClientsOrder>(Json);
+                     pendingOrders.Add(order);
+                     Debug.Log("Table no " + order.TableNO + " ID " + order.IDs.Count + " total Price" + order.Total_Price);
+                 }
+
+                 Debug.Log("Pendeing data stored " + pendingOrders.Count);
+           
+           }
+       });
+
 
     }
 }
+
+

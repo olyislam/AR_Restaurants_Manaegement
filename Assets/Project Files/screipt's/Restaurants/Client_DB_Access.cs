@@ -1,18 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using Firebase.Database;
 public class Client_DB_Access : Database_controller
 {
 
-    //this methode will Upload your Order into the firebase databas
-    public void SendData(ClientsOrder OrderedData)
+    public void Cancel_PendingOrder(int TableNo)
     {
-        string Ordered_Json = JsonUtility.ToJson(OrderedData);
-
-        //subdirectorey for Panding Order in database
-        string Table_Information = "Table NO: " + OrderedData.TableNO.ToString();
-        Panding_Path.Child(Table_Information).SetRawJsonValueAsync(Ordered_Json);//Pass to firebase
+        DatabaseReference path = Pending_Path.Child(pending_Sub_Dir + TableNo.ToString());
+        Remove_Data(path);
     }
+
 
 }
