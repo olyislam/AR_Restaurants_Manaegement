@@ -18,18 +18,31 @@ public class ApplicationManager : ItemsManager
 
     #endregion singleton
 
+    #region Admin
+    
+
+    #endregion Admin
+
+
+/**********************************************************************************/
+
+
+    #region Client
+
     #region property
-    [Space]
-    [Header ("ApplicationManager Reference & property")]
+
+
+    [Header ("Client Reference Propertys")]
 
     [SerializeField]
     private Client_DB_Access Client_DB;
-    public UI_Management ui;
+    public Client_UI ui;
     public Card card;
 
 
     public static int TableNo = 0;
     public static string CurrentID ;
+
     #endregion property
 
     public Client_DB_Access Client_DataBase
@@ -39,5 +52,5 @@ public class ApplicationManager : ItemsManager
             return Client_DB;
         }
     }
-
+    #endregion Client
 }

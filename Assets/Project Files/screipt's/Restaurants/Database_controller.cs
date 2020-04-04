@@ -20,8 +20,4 @@ public class Database_controller : MonoBehaviour
     }
 
 
-
-
-
-
 }

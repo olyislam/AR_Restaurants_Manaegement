@@ -16,17 +16,7 @@ public class Card : MonoBehaviour
 
 
 
-    //call from UI Add Button and it will be Add to card List
-    public void AddItem()
-    {
-        string itemID = ApplicationManager.CurrentID;//Get Selected Model ID
-
-        ApplicationManager AP_manager = ApplicationManager.instance;
-        Items SelectedItem = AP_manager.Get_Item(itemID);
-        AddToCard(SelectedItem);
-    }
-
-    protected void AddToCard(Items NewItem)
+    public void AddToCard(Items NewItem)
     {
         int exestingIndx = -1;
 
@@ -54,7 +44,7 @@ public class Card : MonoBehaviour
     //call from UI Add Button and it will pass this order data into the database
     public void Purcesses(ClientsOrder Client, Client_DB_Access Client_DB)
     {
-        Client_DB.Purcesses(Client);
+        Client_DB.SendData(Client);
         Order_List = new List<Items>();
     }
 

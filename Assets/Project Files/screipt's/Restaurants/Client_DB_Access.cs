@@ -6,7 +6,7 @@ public class Client_DB_Access : Database_controller
 {
 
     //this methode will Upload your Order into the firebase databas
-    public void Purcesses(ClientsOrder OrderedData)
+    public void SendData(ClientsOrder OrderedData)
     {
         string Ordered_Json = JsonUtility.ToJson(OrderedData);
 
